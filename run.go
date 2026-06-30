@@ -84,7 +84,12 @@ func source(c *cli.Command, fs afero.Fs) gloo.Source[[]byte] {
 	p := path(c)
 	switch {
 	case c.IsSet(flagType) && c.IsSet(flagMaxDepth):
-		return command.Find(p, command.FindFs(fs), command.FindType(c.String(flagType)), command.FindMaxDepth(c.Int(flagMaxDepth)))
+		return command.Find(
+			p,
+			command.FindFs(fs),
+			command.FindType(c.String(flagType)),
+			command.FindMaxDepth(c.Int(flagMaxDepth)),
+		)
 	case c.IsSet(flagType):
 		return command.Find(p, command.FindFs(fs), command.FindType(c.String(flagType)))
 	case c.IsSet(flagMaxDepth):
