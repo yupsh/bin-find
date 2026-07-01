@@ -14,12 +14,12 @@ func TestRun(t *testing.T) {
 	cases := []struct {
 		name       string
 		version    string
+		wantErrSub string
 		args       []string
 		dirs       []string
 		files      []string
 		wantOut    []string
 		wantCode   int
-		wantErrSub string
 	}{
 		{
 			name:    "default walks whole tree",

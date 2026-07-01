@@ -11,6 +11,8 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
+const name = "find"
+
 const (
 	flagType     = "type"
 	flagMaxDepth = "maxdepth"
@@ -38,7 +40,7 @@ func run(version string, args []string, _ io.Reader, stdout, stderr io.Writer, f
 	cmd.Writer = stdout
 	cmd.ErrWriter = stderr
 	if err := cmd.Run(context.Background(), args); err != nil {
-		_, _ = fmt.Fprintf(stderr, "find: %v\n", err)
+		_, _ = fmt.Fprintf(stderr, name+": %v\n", err)
 		return 1
 	}
 	return 0
@@ -46,7 +48,7 @@ func run(version string, args []string, _ io.Reader, stdout, stderr io.Writer, f
 
 func newApp(version string, stdout io.Writer, fs afero.Fs) *cli.Command {
 	return &cli.Command{
-		Name:            "find",
+		Name:            name,
 		Version:         version,
 		Usage:           "search for files in a directory hierarchy",
 		UsageText:       usageText,
